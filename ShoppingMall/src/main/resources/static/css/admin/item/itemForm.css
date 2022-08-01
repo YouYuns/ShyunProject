@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+	.itemForm{
+		position: relative;}
+.mainWrap {
+	width: 800px;
+	max-width: 1000px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.itemTitle {
+	font-size: 20px;
+	margin: 100px 0 50px;
+	color: white;
+	background-color: black;
+	padding: 20px 0;
+}
+
+table {
+	width: 100%;
+	border-spacing: 4px;
+}
+
+table th {
+	color: black;
+	border: 1px solid black;
+	font-size: 18px;
+	font-weight: 500;
+	vertical-align: middle;
+}
+
+table td {
+	border: 1px solid black;
+}
+
+table tr td input {
+	width: 96%;
+	height: 50px;
+	border: none;
+	outline: none;
+}
+
+table tr td select {
+	width: 100%;
+	height: 50px;
+	outline: none;
+	border: none;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+table tr td input::placeholder {
+	color: #999999;
+}
+
+.enroll button {
+	width: 100%;
+	height: 70px;
+	font-size: 20px;
+	color: white;
+	background-color: black;
+}
+
+.custom-file input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+.custom-file label {
+	display: inline-block;
+	padding: 10px 40px;
+	color: #999;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #fdfdfd;
+	cursor: pointer;
+	border: 1px solid #ebebeb;
+	border-bottom-color: #e2e2e2;
+	border-radius: .25em;
+}
+
+/* named upload */
+.custom-file .custom-file-label {
+	width: 450px;
+	height: 30px;
+	display: inline-block;
+	/* label의 패딩값과 일치 */
+	font-size: inherit;
+	font-family: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #f5f5f5;
+	border: 1px solid #ebebeb;
+	border-bottom-color: #e2e2e2;
+	border-radius: .25em;
+	-webkit-appearance: none;
+	/* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+}
+.fieldError{
+	color:red;
+	font-size: 14px;
+	text-align: left;
+	padding:0px 12px 4px;
+}

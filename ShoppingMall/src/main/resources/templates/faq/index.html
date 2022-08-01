@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/layout}">
+		
+			<div layout:fragment="content">	
+			<th:block layout:fragment="script">
+				<script th:inline="javascript">
+				$(function(){
+					getFaq();
+					$(".faq-menu>li").click(getFaq);
+				});
+				
+				function getFaq(){
+					var divno=$(this).index() < 0 ? 0: $(this).index();
+					var url = "/faq/" + divno;
+					$.get(url, function(result){
+						var childNo=divno+1;
+						$("#content .faq-menu li").css("background-color","white").css("color","black");
+						$("#content .faq-menu li:nth-child("+childNo+")").css("background-color","black").css("color","white");
+						$("#data").html(result);
+					}
+					);
+				}
+			
+				
+				
+				
+				$(document).ready(function() {
+					var errorMessage =/*[[${errorMessage}]]*/"";
+					var successMessage = /*[[${successMessage}]]*/"";
+					if(errorMessage != null) {
+						alert(errorMessage);
+					}
+					if(successMessage != null) {
+						alert(successMessage);
+					}
+
+				});
+				</script>
+
+			</th:block>
+	
+<!-- 사용자 CSS추가 -->
+	<th:block layout:fragment="css">
+		<style>
+		.faqwrap{
+    width: 1500px;
+        height: 1300px;
+    max-width: 1130px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+		}
+
+#content .view-size{
+    width: 100%;
+}
+.ptit{
+    font-size: 30px;
+    margin:50px 0;
+}
+#content .faq-menu{
+    margin:0 auto;
+    width: 70%;
+
+}
+#content .faq-menu li{
+    width: 150px;
+    padding: 40px 60px;
+    margin:40px 0;
+    border: 1px solid black;
+    cursor: pointer;
+}
+#content .faq-menu li:nth-child(1){
+    border-right: none;
+}
+#content .faq-menu li:nth-child(2){
+    border-right: none;
+}
+#data{
+    border-top: 1px solid gainsboro;
+    margin:20px 0;
+}
+#data button{
+    width: 100px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    margin: 20px 0;
+    right: 0;
+    top:150px;
+    cursor: pointer;
+}
+#data ul{
+	height: 90px;
+	line-height: 90px;
+	border-bottom: 1px solid #a9a9a9;
+}
+.t1{
+	display: inline-block;
+	width: 180px;
+	text-align: center;
+	font-size:30px;
+}
+.t2 {
+	display: inline-block;
+	width: 960px;
+	font-size:25px;
+	padding: 30px 20px;
+}
+.t3{
+	display: inline-block;
+	width: 960px;
+	font-size:22px;
+	background-color: rgb(246,247,249);
+}
+#data dl dd{
+	padding: 30px 20px 30px 150px;
+}
+.list{
+	position: relative;
+}
+
+.list dd{
+	display: none;
+}
+.question::before{
+	content: "Q";
+	display:inline-block;
+	font-size: 35px;
+	color: #fff;
+	background-color: #ff7787;
+	border-radius: 50%;
+	width: 42px;
+	height: 42px;
+	text-align: center;
+	margin-right: 10px;
+	position: absolute;
+	left:200px;
+}
+
+
+.notice dt, dd{
+border-bottom: 1px solid gainsboro;
+}
+.notice dd{
+text-align: left;
+background-color: rgb(246,247,249);
+}
+.noticeTitle::before{
+	content: "!";
+	display:inline-block;
+	font-size: 35px;
+	color: #fff;
+	background-color: black;
+	border-radius: 50%;
+	width: 42px;
+	height: 42px;
+	text-align: center;
+	margin-right: 10px;
+	
+	position: absolute;
+	left:300px;
+}
+
+.qus dt, dd{
+border-bottom: 1px solid gainsboro;
+}
+.qus dd{
+background-color: rgb(246,247,249);
+}
+.qna{
+border-bottom: 1px solid gainsboro;
+}
+.qna td{
+background-color: rgb(246,247,249);
+}
+
+.qnaTitle::before{
+	content: "";
+	display:inline-block;
+	font-size: 35px;
+	color: white;
+	background-color: white;
+	border-radius: 50%;
+	width: 45px;
+	height: 45px;
+	text-align: center;
+	margin-right: 10px;
+	position: absolute;
+	left:300px;
+	background-image: url("img/lock.png");
+	background-size:cover;
+	width: 38px;
+	height: 38px;
+	vertical-align: middle;
+}
+
+	</style>
+
+<main>
+	<div class="faqwrap"> 
+	<section id="content">
+			<div class="wrap view-size">
+				<p class="ptit">고객센터 페이지 입니다.</p>
+				<ul class="faq-menu flex between">
+					<li>공지사항</li>
+					<li>자주 묻는 질문</li>
+					<li>1:1 질문하기</li>
+				</ul>
+			   <div id="data">
+                        </div>
+				
+		</div>	
+	</section>
+	</div>
+
+</main>
+	</div>
+</html>

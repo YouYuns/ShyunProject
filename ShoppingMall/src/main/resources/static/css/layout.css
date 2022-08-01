@@ -1,0 +1,234 @@
+@charset "utf-8";
+/*///////////////////////////////////////초기화/////////////////////*/
+
+html, body{
+    width:100%; 
+    height:100%;
+}
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video{
+margin:0;
+padding:0;
+border:0;
+outline:0;
+vertical-align:baseline;
+background:transparent;
+}
+
+body{
+line-height:1;
+}
+
+article,aside,details,figcaption,figure, footer,header,hgroup,menu,nav,section{
+display:block;
+}
+
+nav ul, li{
+list-style:none;
+}
+
+a{
+    color:black;
+margin:0;
+padding:0;
+
+vertical-align:baseline;
+background:transparent;
+text-decoration:none;
+}
+
+
+img{
+vertical-align:top;
+}
+
+hr{
+display:block;
+height:2px;
+border:0;
+margin:0;
+padding:0;
+}
+
+
+
+.flex{
+    display: flex;
+}
+.between{
+    justify-content: space-between;
+}
+
+
+
+.fwrap{
+    width: 500px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+/*//////////////////////헤더////////////////////////////////*/
+
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 20px;
+    max-width: 1250px;
+    margin: 0 auto;
+    border-bottom: 1px solid lightgray;
+  
+}
+.headerTitle{
+    text-align: center;
+    font-size: 2rem;
+}
+.headerGnb
+{
+   width:250px;
+}
+.headerGnb > .gnb ul
+{
+    line-height: 2rem;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.headerGnb > .gnb ul li{
+    font-size: 13px;
+    color:black;
+}
+
+.headerGnb > .gnb ul li:hover{
+    text-decoration: underline;
+}
+
+.headerLnb
+{
+    width:300px;
+}
+.headerLnb > .lnb ul
+{
+    line-height: 2rem;
+    display: flex;
+    justify-content: space-around;
+
+}
+.headerLnb > .lnb ul li a{
+    font-size: 13px;
+    color:black;
+}
+.headerLnb > .lnb ul li:hover{
+	    text-decoration: underline;
+	
+}
+.searchQuery{
+	position: relative;
+	margin:10px 0;
+
+	}
+.searchQuery input{
+	width:170px;
+	height:30px;
+	border:none;
+	border: 1px solid gray;
+}
+.searchQuery button{
+	background-color: black;
+	color:white;
+	height: 30px;
+	position:absolute;
+	bottom: 0;
+	right:5px;
+	border: none;
+	
+}
+.sub-menu {
+    position: absolute;
+    top:0%;
+    left: -300px;
+    width: 300px;
+    height: 100%;
+    transition: 0.1s;
+    z-index: 9999;
+}
+.sub-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+.sub-menu ul li{
+	margin:30px 0 0 70px;
+}
+.sub-menu ul li a{
+    color: white;
+    font-size: 15px;
+   cursor: pointer;
+}
+.sub-menu{
+    width: 200px;
+    height: 100%;
+    overflow: hidden;
+    background: black;
+    transition-duration: 0.5s;
+}
+
+.main-nav-left:hover .sub-menu{
+    left:0;
+    right: 400px;
+    height:100%;
+    width: 500px;
+    overflow: hidden
+}
+
+
+
+#w_icon{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	vertical-align:middle;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
+/* //////////////////////푸터부분///////////////// */
+
+footer{
+	position:relative;
+    width: 100%;
+    background-color:black;;
+    padding: 10px 0;
+}
+    
+footer .footerInfo ul{
+    display: flex;
+    color:white;
+    padding: 20px 0;
+    
+}
+footer .footerInfo ul li{
+    padding-right: 20px;
+    text-align: center;
+    margin:0 auto;
+    font-size: 12px;
+}
+footer .footerInfo ul li:not(:last-child){
+    padding-right: 0;
+}
+footer .footerInfo ul li a{
+    color:white;
+    font-size: 12px;
+}
+footer .cop{
+    color: grey;
+    
+    
+}
+footer .cop p{
+    padding: 5px 0;
+    font-size: 12px;
+    
+}

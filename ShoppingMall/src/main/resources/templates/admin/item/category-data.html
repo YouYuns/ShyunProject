@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<select name="caNo">
+	<option>2차카테고리</option>
+			<th:block th:each="op : ${option}">
+				<option th:value="${op.no}">[[${op.name}]]</option>
+			</th:block>
+</select>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
+	<a sec:authorize="hasAnyAuthority('ROLE_ADMIN')" th:href="@{/faq/{divno}/write(divno=${divno})}"><button>글쓰기</button></a>
+	
+	
+	<!-- //////////////공지사항////////// -->
+
+	<table th:each="dto :${list}"> 
+<dl class="list-c" >
+
+	<div class="notice" th:if="${dto.division == T(com.shyun.shop.constant.Division).NOTICE}" >
+	<input type="hidden" class="faqNo" th:value="${dto.faqNo}">
+	<dt >
+		<span class="t2 noticeTitle">[[${dto.title}]]</span>
+		<span sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><button  onclick="deleteNo();">삭제하기</button></span>
+	</dt>
+		<dd  class="t3 noticeContent" th:utext="${dto.content}" ></dd>
+	</div>
+	</dl>
+	</table>
+	<!-- //////////////자주 묻는 질문////////// -->
+<table  th:each="dto :${list}">
+	<dl class="list-c" >
+	<div class="qus" th:if="${dto.division == T(com.shyun.shop.constant.Division).QUS}"  >
+	<input type="hidden" class="faqNo" th:value="${dto.faqNo}">
+	<dt >
+		<span class="t2 question">[[${dto.title}]]</span>
+		<span sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><button onclick="deleteNo();">삭제하기</button></span>
+	</dt>
+	<dd class="t3 answer" th:utext="${dto.content}" ></dd>
+	</div>
+	</dl>
+	</table>
+	<!-- //////////////1:1질문하기////////// -->
+		
+	<table class="list" th:each="dto :${list}">
+		<div class="qna" th:if="${dto.division == T(com.shyun.shop.constant.Division).QNA}">
+	
+		<th>
+			<a th:if="${#authentication.name}==${dto.writer}"   th:href="@{/faq/{fno}/detail(fno=${dto.faqNo})}"><span class="t2 qnaTitle">[[${dto.title}]]</span></a>
+			<a th:unless="${#authentication.name}==${dto.writer}" ><span class="t2 qnaTitle">[[${dto.title}]]</span></a>
+		</th>
+				
+	</div>
+</table>
+<script type="text/javascript">
+	
+	$(".list-c").click(function(){
+		$(".list-c").not(this).find("dd").slideUp(200);
+		$(this).find("dd").slideToggle(200);
+	});
+	
+	
+		function deleteNo(){
+			 var token = $("meta[name='_csrf']").attr("content");
+	         var header = $("meta[name='_csrf_header']").attr("content");
+			var r = confirm("정말로 삭제하시겠습니까?");
+			//확인 :true 취소: false
+			if(!r) return ;
+			var faqNo = $(".faqNo").val();
+			$.ajax({
+				  beforeSend : function(xhr){
+	                 /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+	                 xhr.setRequestHeader(header, token);
+	             },
+			url:"/faq/delete/"+faqNo,
+				type:"delete",
+				//data:{"_method":"delete"},
+				success:function(result){
+					alert("삭제완료");
+					location.href="/faq";
+				}
+			});
+		}
+	
+</script>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="~{layouts/layout-admin :: layout(~{::head}, ~{::main})}">
+<head>
+</head>
+<main>
+	<h1>비주얼이미지 등록</h1>
+	<div class="wrap">
+		<p>비주얼 이미지 등록</p>
+		<form action="/admin/visuals" method="post" enctype="multipart/form-data">
+			<ul>
+				<li><input type="file" name="vimg" ></li>
+				<li><input type="text" name="title" ></li>
+				<li><input type="text" name="sub" ></li>
+				<li><button type="submit">등록</button></li>
+			</ul>
+			 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+		</form>
+	</div>
+</main>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+th:fragment="layout(head, main)">
+
+<head>
+  <link rel="icon" href="/img/icon/favicon.ico">
+<link th:href="@{/css/layout.css}" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<!-- default header name is X-CSRF-TOKEN -->
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>SHYUN</title>	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="icon" href="/images/icon/myicon.ico">
+    <!-- 공통적용할 css -->
+    <link rel="stylesheet" href="/css/common/reset.css">
+    <link rel="stylesheet" href="/css/common/common.css">
+    <link rel="stylesheet" href="/css/common/header.css">
+    <link rel="stylesheet" href="/css/common/footer.css">
+    <!-- summernote css/js -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=02cff8e32b884f2b68923f27459dc62e&libraries=services,clusterer,drawing"></script>
+    <th:block th:replace="${head}">page에서 설정한 head정보가 삽입되요</th:block>
+    
+</head>
+<body>
+<div th:replace="fragments/header ::header"></div>
+    <main th:replace="${main}">
+    	메인섹션이 삽입되는 영역입니다.
+    </main>
+   <div th:replace="fragments/footer ::footer"></div>
+</body>
+</html>

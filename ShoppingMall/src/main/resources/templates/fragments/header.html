@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:fragment="header">
+
+	 <header>
+        <section class="headerGnb">
+        <nav class="gnb">
+  
+            <ul>
+                <li class="main-nav-left">
+                    <a  href="#" class="side-menu" >제품보기</a>
+                   
+                </li>
+                <li><a href="/faq" >고객센터</a></li>
+                <li sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/home">관리자페이지</a></li>
+            </ul>
+        </nav>
+        <form th:action="@{/}" method="get" class="searchQuery">
+         <input  name="searchQuery" type="search" placeholder="검색하기">
+         <button>검색하기</button>
+         </form>
+         </section>
+         
+         
+    <section class="headerTitle"><a href="/">SHY</a></section>
+    <section class="headerLnb">
+        <nav class="lnb">
+            <ul>
+            <li>
+            	<span id="temp"></span>
+            	<span>℃</span>
+            	<span id="w_icon"></span>
+            	</li>
+            	<li><a href="/members/new">회원가입</a></li>
+                <li sec:authorize="isAuthenticated()"><a href="/members/logout">로그아웃</a></li>
+                <li sec:authorize="isAnonymous()"><a href="/members/login">로그인</a></li>
+                <li sec:authorize="isAuthenticated()"><a href="/orders">구매이력</a></li>
+                <li sec:authorize="isAuthenticated()"><a href="/cart">카트</a></li>
+            </ul>
+        </nav>
+           
+    </section>
+    </header>
+</div>
+</html>

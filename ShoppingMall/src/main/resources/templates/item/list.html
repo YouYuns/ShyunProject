@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="~{layouts/layout1 :: layout(~{::head}, ~{::main})}">
+<head>
+<style type="text/css">
+
+.row{
+width: 1700px;
+height:1000px;
+margin:0 auto;
+display: flex;
+flex-wrap:wrap;
+
+}
+
+.row .card{
+overflow: hidden;
+margin:50px auto;
+}
+.row .card a img{
+ transition: transform .5s;
+ margin:0 0 30px; 
+
+}
+.row .card a img:hover{
+ transform:scale(1.1);	
+}
+.row .card .card-body{
+text-align: center;
+}
+
+.center{
+width: 500px;
+margin: 0 auto;
+padding:50px 0;
+font-size: 30px;
+font-weight: bold;
+text-align: center;
+}
+
+.title{
+width: 500px;
+margin: 50px auto;
+padding:50px 0;
+font-size: 35px;
+font-weight:bold;
+text-align: center;
+}
+</style>
+</head>
+<body>
+	<!-- //////////////////////////////////////////////////// -->
+	<main>
+	 <p class="title" >[[${list.]]</p>
+    <div class="row">
+    
+        <th:block th:each="item :${list}">
+                <div class="card">
+                    <a th:href="'/item/' +${item.id}" class="text-dark">
+                        <img th:src="${item.defImgUrl}" class="card-img-top" th:alt="${item.itemNm}" height="400">
+                        <div class="card-body">
+                            <h3 class="card-title">[[${item.itemNm}]]</h3>
+                            <p class="card-title text-danger" th:text="${#numbers.formatInteger(item.price, 0, 'COMMA')} + '원'"></p>
+                            <p class="card-title text-danger" th:text="${#numbers.formatInteger(item.discount, 0, 'COMMA')} + '원'"></p>
+                            <p class="card-title text-danger" th:text="${#numbers.formatInteger(item.price-item.discount, 0, 'COMMA')} + '원'"></p>
+                        </div> 
+                    </a>
+                </div>
+        </th:block>
+    </div>
+	
+		
+	</main>
+</body>
+
+</html>

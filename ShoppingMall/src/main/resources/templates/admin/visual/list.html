@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:replace="~{layouts/layout-admin :: layout(~{::head}, ~{::main})}">
+<head>
+    <link rel="stylesheet" href="/css/admin/visual/list.css">
+</head>
+<main>
+	<h1>비주얼이미지 리스트</h1>
+	<div class="wrap visual-main">
+		<p>비주얼 이미지 리스트 페이지</p>
+		<table>
+			<thead>
+				<tr>
+					<th>관리번호</th>
+					<th>이미지</th>
+					<th>링크주소</th>
+					<th>타이틀</th>
+					<th>서브타이틀</td>
+					<th>적용여부</th>	
+					<th>관리</th>	
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dto, i:${list}" class="item">
+					<td class="vno">[[${dto.vno}]]</td>
+					<td>
+						<img th:src="${dto.url+dto.orgName}" height="100px">
+					</td>
+					<td><input type="text" class="link" th:value="${dto.link}" readonly></td>
+					<td><input type="text" class="title" th:value="${dto.title}" readonly></td>
+					<td><input type="text" class="sub" th:value="${dto.sub}" readonly></td>
+					<td>
+						<label th:for="|cb-isShow-${i.count}|">적용 됨</label>
+						<input th:id="|cb-isShow-${i.count}|" class="cb-isShow" type="checkbox"  th:checked="${dto.isShow}">
+					</td>	
+					<td>
+						<button type="button" class="btn-del">삭제</button>
+					</td>			
+				</tr>
+			</tbody>
+		</table>
+		<script type="text/javascript">
+			
+		
+			$(function(){
+				$(".btn-del").click(function(){
+					var vno=$(this).parents(".item").find(".vno").text();
+					var token = $("meta[name='_csrf']").attr("content");
+	    			var header = $("meta[name='_csrf_header']").attr("content");
+	    			var r = confirm("정말로 삭제하시겠습니까?");
+					//확인 :true 취소: false
+					if(!r) return ;
+	    			$.ajax({
+	    				beforeSend: function(xhr){xhr.setRequestHeader(header, token);},
+						url: "/admin/visuals/"+vno+"/del",
+						type:"delete",
+						success: function(result){
+							if(result){
+								location.href="/admin/visuals";
+							}
+						}
+					});
+				});
+				
+				$(".title,.sub, .link").focus(function(){
+					$(this).removeAttr("readonly");
+				});
+				$(".title,.sub, .link").blur(function(){
+					$(this).attr("readonly",true);
+				});
+				
+			
+			
+				$(".title, .sub, .link").change(function(){
+					var vno=$(this).parents(".item").find(".vno").text();
+					
+					var sub=$(this).parents(".item").find(".sub").val();
+					var title=$(this).parents(".item").find(".title").val();//$(this).val()
+					var link=$(this).parents(".item").find(".link").val();
+					
+					var token = $("meta[name='_csrf']").attr("content");
+	    			var header = $("meta[name='_csrf_header']").attr("content");
+	    			$.ajax({
+	    				beforeSend: function(xhr){xhr.setRequestHeader(header, token);},
+						url: "/admin/visuals/"+vno,
+						type:"put",
+						data:{"title": title, sub: sub, link: link},
+						success: function(result){
+							if(result){
+								alert("수정완료");
+							}
+						}
+					});
+				});
+				
+				
+				
+				
+				$(".cb-isShow").change(function(){
+					//alert($(this).attr("checked"));
+					var vno=$(this).parents("tr").find(".vno").text();
+					var isShow=$(this).prop("checked");//true or false
+					
+					var token = $("meta[name='_csrf']").attr("content");
+	    			var header = $("meta[name='_csrf_header']").attr("content");
+	    			$.ajax({
+	    				beforeSend: function(xhr){xhr.setRequestHeader(header, token);},
+						url:"/admin/visuals/"+vno+"/isShow",
+						type:"put",
+						data: {"isShow": isShow},
+						success: function(result){
+							if(result){
+								alert("수정완료");
+							}
+						}
+					});
+				});
+				
+			});
+		</script>
+	</div>
+</main>
+</html>

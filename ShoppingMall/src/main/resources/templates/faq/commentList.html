@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	 <ul>
+			<li class="comment-item" th:each="dto : ${list}">
+				<div class="comment-area" th:text="${dto.id}">댓글번호</div>
+				<div class="comment-content" th:text="${dto.comment}">댓글</div>
+				<div class="commenter" th:text="${dto.commenter}">작성자</div>
+				<div class="comment-bottom">
+					<span th:text="${dto.updateTime}">작성일</span>
+					<a class="btn-write" >답글쓰기</a>
+					 <a class="btn-delete">삭제</a>
+				</div>
+			</li>
+			<li th:unless="!${#lists.isEmpty(list)}">
+				<div >댓글이 존재하지 않습니다.</div>
+			</li>
+			
+		</ul>
+</html>

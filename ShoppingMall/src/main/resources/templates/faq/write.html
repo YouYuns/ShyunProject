@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+th:replace="~{layouts/layout2 :: layout(~{::head}, ~{::main})}">
+
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/faq/write.css" rel="stylesheet">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
+	<!-- include summernote css/js -->
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+	<script src="/js/my-summernote.js"></script>
+	<script src="/js/fileupload.js"></script>
+	
+	
+</head>
+<main>
+
+	 <div class="wrap">
+	 	 <p class="faqtitle">글쓰기</p>
+		<section id="reg">
+			<form method="post" th:action="@{/faq/{divno}/write(divno=${divno})}">
+			<input type="hidden" th:value="${divno}">
+					<table>
+						<tr class="title">					 
+					  <td >
+					  제목
+					  </td>
+                    <td>
+                        <input type="text" name="title" required="required" >
+                    </td>
+                </tr>
+                <tr>
+                	<td>
+                	<input type="hidden" th:value="${#authentication.name}" th:name="writer">
+                	</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                      				<textarea id="summernote" name="content"></textarea>
+                    </td>
+                </tr>
+            </table>
+                <div class="button">
+                    <span>
+					<input type="hidden" name="write" class="faqWrite">
+					<button class="faqWrite" type="submit">글쓰기</button>
+				</span>
+                <span>
+					<a href="javascript:history.back()"><button type="button" class="faqCancel">취소하기</button></a>
+				</span>
+            </div>
+            	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+          </form>
+          	</section>
+	</div>
+</main>
+</html>

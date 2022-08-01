@@ -1,0 +1,280 @@
+@charset "UTF-8";
+
+
+.wrap{
+	width: 900px;
+	height:1000px;
+	margin:0 auto;
+}
+.faqtitle{
+	font-size: 30px;
+	text-align: center;
+	margin: 50px 0 ;
+}
+.title td:first-child{
+	width: 300px;
+	font-size: 20px;
+	text-align: center;
+	padding:40px;
+}
+.title td input{
+	width: 500px;
+	height: 30px;
+}
+.filebox{
+	display: flex;
+}
+
+.filebox > div input,label{
+	margin:10px 50px;
+}
+.filebox > div{
+	margin: 20px 0;
+}
+#reg input[type=file]{
+	display: none;
+}
+
+#reg input[type=file]+label{
+	display: block;
+	width: 100px;
+	height: 100px;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 98px;
+	text-align: center;
+	border: 1px dotted rgba(0,0,0, 0.2);
+	background-color: gray;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+.faqWrite{
+	background-color:black;
+	color:white;
+	width: 100px;
+	height: 40px;
+}
+.faqCancel{
+		background-color:black;
+	color:white;
+	width: 100px;
+	height: 40px;
+}
+.form-check{
+	text-align: center;
+	margin:0 0 20px;
+}
+.form-check input{
+	width: 25px;
+	height: 25px;
+	transform:translateY(25%);
+}
+.content{
+	padding-bottom: 40px;
+}
+.title td:last-child input{
+	width:700px;
+	height: 40px;
+}
+.button{
+	margin-bottom: 50px;
+	
+}
+#reply-list {
+
+}
+
+#reply-list ul li{
+	display: flex;
+		border-top:1px solid gray;
+	border-bottom:1px solid gray;
+	margin:15px 0;	
+}
+#reply-list ul li div{
+	width: 100%;
+		text-align: center;
+	line-height: 50px;
+	justify-content: space-between;
+}
+#reply-list ul li div:nth-child(1){
+	width:5%;
+
+}
+#reply-list ul li div:nth-child(2){
+	width: 40%;
+}
+#reply-list ul li div:nth-child(3){
+	width: 15%;
+}
+#reply-list ul li div:nth-child(4){
+	width: 40%;
+}
+
+
+/* ============================ */
+    /* /////////////////////////////////// */
+    
+ 
+  #commentList ul {
+    border:  1px solid rgb(235,236,239);
+    border-bottom : 0;
+}
+
+#commentList li {
+    background-color: #f9f9fa;
+    list-style-type: none;
+    border-bottom : 1px solid rgb(235,236,239);
+    padding : 18px 18px 0 18px;
+}
+
+#commentList {
+    width : 50%;
+    margin : 70px auto;
+    
+}
+
+
+.up_date {
+    margin : 0 8px 0 0;
+}
+
+#comment-writebox {
+    background-color: white;
+    border : 1px solid #e5e5e5;
+    border-radius: 5px;
+    
+}
+    
+  #commentList  textarea {
+    display: block;
+    width: 100%;
+    min-height: 17px;
+    padding: 0 20px;
+    border: 0;
+    outline: 0;
+    font-size: 13px;
+    resize: none;
+    box-sizing: border-box;
+    background: transparent;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+    #comment-writebox-bottom {
+    padding : 3px 10px 50px 10px;
+    min-height : 35px;
+  	
+}
+
+.btn {
+    font-size:10pt;
+    color : black;
+    background-color: #eff0f2;
+    text-decoration: none;
+    padding : 9px 10px 9px 10px;
+    border-radius: 5px;
+    float : right;
+}
+    
+    
+#btn-write-comment, #btn-write-reply { 
+    color : white;
+    background-color: black;
+}
+
+#btn-cancel-reply { 
+    background-color: #eff0f2;
+    margin-right : 10px;
+}
+
+#btn-write-modify { 
+    color : #009f47;
+    background-color: #e0f8eb;
+}
+
+#btn-cancel-modify { 
+    margin-right : 10px;
+}
+
+#reply-writebox {
+    display : none;
+    background-color: white;
+    border : 1px solid #e5e5e5;
+    border-radius: 5px;
+    margin : 10px;
+}
+
+#reply-writebox-bottom {
+    padding : 3px 10px 10px 10px;
+    min-height : 35px;
+}
+
+#modify-writebox {
+    background-color: white;
+    border : 1px solid #e5e5e5;
+    border-radius: 5px;
+    margin : 10px;
+}
+
+#modify-writebox-bottom {
+    padding : 3px 10px 10px 10px;
+    min-height : 50px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 40px;
+    border: 1px solid #888;
+    width: 50%;
+    
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+ .btn-write,.btn-delete {
+      background-color: rgb(236, 236, 236); /* Blue background */
+      border: none; /* Remove borders */
+      color: black; /* White text */
+      padding: 6px 12px; /* Some padding */
+      font-size: 16px; /* Set a font size */
+      cursor: pointer; /* Mouse pointer on hover */
+      border-radius: 5px;
+      margin-left: 30px;
+    }
+    .btn-write:hover {
+      text-decoration: underline;
+    }

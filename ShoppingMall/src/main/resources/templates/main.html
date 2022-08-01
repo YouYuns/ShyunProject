@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layouts/layout}">
+
+      <div layout:fragment="content">
+      <!--///////////////////css영역////////////////////-->
+	<th:block layout:fragment="css">
+		<style>
+      
+body, section, ul, dl, dd {
+  margin:0;
+  padding:0;
+}
+.slider {
+  list-style:none;
+  height:450px;
+  overflow:hidden;
+  
+}
+.slider:after {
+  content:'';
+  display:block;
+  clear:both;
+}
+.slider li {
+  position:relative;
+  top:100px;
+  width:70%;
+  margin:0 auto;
+  height:350px;
+  opacity:0;
+}
+.slider li div {
+  width:100%;
+  height:100%;
+  background-size:cover;
+  position:relative;
+}
+.slider li dl {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  left:20px;
+}
+.slider li .right {
+  left:auto;
+  right:20px;
+  text-align:right;
+}
+.slider li dt {
+  color:#fff;
+  font-size:3rem;
+  text-shadow:1px 1px 10px #444;
+}
+.slider li dd {
+  color:#fff;
+  text-shadow:1px 1px 10px #444;
+}
+.btn {
+  text-align:center;
+  margin:30px auto 70px;
+  padding-bottom:100px;
+  width: 1200px;
+  border-bottom: 1px solid gray;
+}
+.btn button {
+  margin-top:10px;
+  border:1px solid #ccc;
+  background-color:#fff;
+  color:#666;
+  font-size:1.5rem;
+  cursor:pointer;
+}
+.row{
+width: 1700px;
+margin:0 auto;
+display: flex;
+flex-wrap:wrap;
+
+}
+
+.row .card{
+overflow: hidden;
+margin:50px auto;
+}
+.row .card a img{
+ transition: transform .5s;
+ margin:0 0 30px; 
+
+}
+.row .card a img:hover{
+ transform:scale(1.1);	
+}
+.row .card .card-body{
+text-align: center;
+}
+
+.center{
+width: 500px;
+margin: 0 auto;
+padding:50px 0;
+font-size: 30px;
+font-weight: bold;
+text-align: center;
+}
+
+.title{
+width: 500px;
+margin: 50px auto;
+padding:50px 0;
+font-size: 35px;
+font-weight:bold;
+text-align: center;
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+.active{
+	background-color: black;
+}
+.active a{
+color:white;
+}
+.disabled{
+visibility: hidden;
+} 
+.pagination .page-item a{
+text-align:center;
+border:1px solid black;
+width: 60px;
+height: 60px;
+line-height:60px;
+margin:0 1px ;
+padding:0;
+display:inline-block;
+cursor: pointer;
+
+}
+.pagination .page-item{
+	margin-bottom: 100px;
+}
+
+
+#visual>.area{
+	overflow: hidden;
+}
+
+#visual> .area .vimg-wrap .vimg .bg{
+	display:block;
+	width: 100%;
+	height: 700px;
+	color: black;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#visual>.area .view-wrap .vimg .bg .text{
+	display: block;
+}
+#visual>.area .view-wrap .vimg .bg .text .title{
+	font-size:24px;
+}
+#visual>.area .view-wrap .vimg .bg .text .sub{
+	margin-top: 5px;
+	font-size: 18px;
+	display:block;
+}
+
+
+		</style>
+		<th:block>
+      
+      <!--///////////////////스크립트 영역////////////////////-->
+<th:block layout:fragment="script">
+
+	<script th:inline="javascript">
+
+	
+	$(document).ready(function() {
+		var success =/*[[${success}]]*/"";
+		if(success != null) {
+			alert(success);
+		}
+
+
+	}); 
+	 $(function(){
+		  var $slider = $('.slider'),
+		      $firstSlide = $slider.find('li').first() // 첫번째 슬라이드
+		      .stop(true).animate({'opacity':1},200); // 첫번째 슬라이드만 보이게 하기
+
+		  function PrevSlide(){ // 이전버튼 함수
+		    stopSlide();startSlide(); //타이머 초기화
+		    var $lastSlide = $slider.find('li').last() //마지막 슬라이드
+		    .prependTo($slider); //마지막 슬라이드를 맨 앞으로 보내기  
+		    $secondSlide = $slider.find('li').eq(1)//두 번째 슬라이드 구하기
+		    .stop(true).animate({'opacity':0},400); //밀려난 두 번째 슬라이드는 fadeOut 시키고
+		    $firstSlide = $slider.find('li').first() //맨 처음 슬라이드 다시 구하기
+		    .stop(true).animate({'opacity':1},400);//새로 들어온 첫 번째 슬라이드는 fadeIn 시키기
+		  }
+		  
+		  function NextSlide(){ // 다음 버튼 함수
+		    stopSlide();startSlide(); //타이머 초기화
+		    $firstSlide = $slider.find('li').first() // 첫 번째 슬라이드
+		    .appendTo($slider); // 맨 마지막으로 보내기
+		    var $lastSlide = $slider.find('li').last() // 맨 마지막으로 보낸 슬라이드
+		    .stop(true).animate({'opacity':0},400); // fadeOut시키기
+		    $firstSlide = $slider.find('li').first()// 맨 처음 슬라이드
+		    .stop(true).animate({'opacity':1},400);// fadeIn 시키기
+		  }
+		  
+		  $('#next').on('click', function(){ //다음버튼 클릭
+		    NextSlide();
+		  });
+		  $('#prev').on('click', function(){ //이전 버튼 클릭
+		    PrevSlide();
+		  });
+
+		  startSlide(); // 자동 슬라이드 시작
+		  
+		  var theInterval;
+
+		  function startSlide() {
+		    theInterval = setInterval(NextSlide, 2000); //자동 슬라이드 설정
+		  }
+
+		  function stopSlide() { //자동 멈추기
+		    clearInterval(theInterval);
+		  }
+		  
+		  $('.slider').hover(function(){ //마우스 오버시 슬라이드 멈춤
+		    stopSlide();
+		  }, function (){
+		    startSlide();
+		  });
+		}); 
+	 
+	 
+</script>
+<script type="text/javascript" src="/js/visual.js"></script>
+
+</th:block>
+
+<div id="visual"> 
+		<div class="wrap area slide">
+		</div>
+</div>
+
+
+<section>
+ <input type="hidden" name="searchQuery" th:value="${itemSearchDto.searchQuery}">
+    <p class="title" >전통주</p>
+    <div class="row">
+    
+        <th:block th:each="item, status: ${items.getContent()}">
+                <div class="card">
+                    <a th:href="'/item/' +${item.id}" class="text-dark">
+                        <img th:src="${item.imgUrl}" class="card-img-top" th:alt="${item.itemNm}" height="400">
+                        <div class="card-body">
+                            <h3 class="card-title">[[${item.itemNm}]]</h3>
+                            <p class="card-text">[[${item.itemDetail}]]</p>
+                            <p class="card-title text-danger" th:text="${#numbers.formatInteger(item.price, 0, 'COMMA')} + '원'"></p>
+                        </div> 
+                    </a>
+                </div>
+        </th:block>
+    </div>
+    
+</section>
+<section>
+   <div th:with="start=${(items.number/maxPage)*maxPage + 1}, 
+            end = (${(items.totalPages == 0 ) ?  1 : (start + (maxPage -1) < items.totalPages ? start + (maxPage -1) : items.totalPages)})" >
+            	
+                <ul class="pagination">
+                      <li class="page-item" th:classappend="${items.number eq 0}?'disabled':''">
+                <a th:href="@{'/' + '?searchQuery='+ '&page=' + ${items.number-1}}" class="page-link">
+                        <span>&lt;</span>
+                    </a>
+                </li>
+
+              <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1}?'active':''">
+                	<a th:href="@{'/' +'?searchQuery='  + '&page=' + ${page-1}}" th:inline="text" >[[${page}]]</a>
+          	  </li>
+
+               <li class="page-item" th:classappend="${items.number+1 ge items.totalPages}?'disabled':''">
+                <a th:href="@{'/' +'?searchQuery=' + '&page=' + ${items.number+1}}" class="page-link" >
+                 <span>&gt;</span>
+                </a>
+           		 </li>
+
+                </ul>
+            </div>
+</section>            
+</div>
+
+</html>
+  

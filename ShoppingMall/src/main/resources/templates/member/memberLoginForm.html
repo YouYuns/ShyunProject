@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/layout}">
+		
+<div layout:fragment="content">
+
+<!--///////////////////css영역////////////////////-->
+<th:block layout:fragment="css">
+<style>
+@charset "utf-8";
+.wrap{
+    width: 600px;
+    height:1000px;
+    max-width: 1130px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.loginTitle{
+    height: 85px;
+    margin:30px 0;
+  
+    
+}
+.loginTitle > div{
+    text-align: center;
+    line-height: 85px;
+    background-color: black;
+    color: white;
+
+}
+
+.memSelect {
+    margin: 20px auto ;
+    
+}
+.memSelect ul{
+    
+    display: flex;
+    height: 50px;
+}
+.memSelect ul li {
+    width: 50%;
+}
+.memSelect ul li:first-child{
+    border: 1px solid black;
+    border-bottom: none;
+}
+.memSelect ul li:last-child{
+   border-bottom: 1px solid black;
+}
+.memSelect ul li a {
+    font-weight: bold;
+    display:inline-block;
+    width: 100%;
+    text-align: center;
+    line-height: 50px;
+}
+.loginForm{
+    width: 100%; 
+    
+}
+.loginForm input:not(.rememberId){
+    padding : 0;
+    width: 100%;
+    height: 55px;
+    border : none;
+    margin:5px 0;
+    
+    border-bottom: 1px solid black;
+}
+.loginForm input:focus{
+    outline: none;
+}
+.loginForm input::placeholder{
+    color:black;
+    font-weight: bold;
+}
+.loginForm label{
+    font-size:13px;
+    height: 30px;
+    line-height: 20px;
+    
+  
+}
+.loginForm label input{
+    margin :15px 0;
+   
+}
+.loginForm label input[type=checkbox]{
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    outline: 0;
+    border: 0;
+    border-radius: 0;
+    position: relative;
+    top:4.5px;
+ 
+}
+.loginForm button{
+    margin:30px 0;
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    background-color: black;
+    color: white;
+    border :none;
+    cursor: pointer;
+}
+
+.loginJnf{
+    height: 30px;
+    margin:10px 0 20px;
+    
+}
+.loginJnf div ul{
+    display: flex;
+    justify-content: center;
+}
+
+.loginJnf div ul li a{
+    line-height: 30px;
+    padding: 0 10px;
+    font-size: 12px;
+    border-right: 1px solid lightgray;
+}
+.loginJnf div ul li:last-child a{
+    padding-left:10px;
+    border:none;
+}
+.loginSns{
+   margin-bottom: 50px;
+}
+.loginSns div {
+    position: relative;
+    padding:0;
+    margin:0;
+}
+
+.loginSns div a{
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 13px;
+    outline: 1px solid lightgray;
+    margin-bottom: 10px;
+}
+
+.loginSns div a span{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top:5px;
+    left:-10px;
+    background-size: cover;
+}
+.loginSns div .nLogo span{
+    background-image: url("https://m.chahong.com/_wisa/img/member/login_naver.png");
+}
+.loginSns div .fLogo span{
+    background-image: url("https://m.chahong.com/_wisa/img/member/login_facebook.png");
+}
+.loginSns div .cLogo span{
+    background-image: url("https://m.chahong.com/_wisa/img/member/login_kakao.png");
+}
+.error{
+color:red;
+}
+</style>
+<th:block>
+
+  <main class="wrap">
+        <section class="loginTitle">
+                <div>LOGIN</div>
+        </section>
+        <section class="memSelect">
+                <ul>
+                    <li><a href="#">회원</a></li>
+                    <li><a href="#">판매자</a></li>
+                </ul>
+        </section>
+        <section class="loginForm">
+            <form action="/members/login" method="post">
+                <input type="text" placeholder="아이디" name="email">
+                <input type="password" placeholder="비밀번호" name="password">
+                <label>
+                    <input type="checkbox" class="rememberId"  name="rememberId" value="on">아이디 기억
+                    </label>
+                <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
+                <button>로그인</button>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            </form>
+        </section>
+        <section class="loginJnf">
+                <div>
+                    <ul>
+                        <li><a href="#">아이디 찾기</a></li>
+                        <li><a href="#">비밀번호 찾기</a></li>
+                        <li><a href="/members/new">회원가입</a></li>
+                    </ul>
+                </div>
+        </section>
+        <section class="loginSns">
+            <div>
+                <a href="/oauth2/authorization/naver" class="nLogo"><span></span>네이버 로그인</a>
+                <a href="/oauth2/authorization/google" class="fLogo"><span ></span>구글 로그인</a>
+                <a href="/oauth2/authorization/kakao" class="cLogo"><span ></span>카카오 로그인</a>
+            </div>
+        </section>
+    </main>
+</div>
+</html>

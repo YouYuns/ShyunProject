@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/* 
+header>div :header 자식요소(손자들 제외)중 div태그
+header>.wrap :header 자식요소중(손자들 제외) 클래스이름이 wrap인 태그
+header>div.wrap :header 자식요소중(손자들 제외) div태그이면서 동시에 클래스이름이 wrap인 태그
+3개다 동일한표현
+ */
+header>.wrap{
+	height: 90px;
+}
+#top-logo>.wrap,
+#top-menu>.wrap,
+#user-menu>.wrap{
+	height: 100%;
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+}
+#top-menu>.wrap ul li:not(:first-child){
+	border-left: 1px solid #a9a9a9;
+}
+
+#top-menu>.wrap ul li a{
+	margin: 0 5px;
+	padding: 0.5em 1em;
+}
+
+#user-menu>.wrap ul li{
+	margin-left: 16px;
+}
+
+#top-logo>.wrap .logo{
+	display: flex;
+	height: 50px;
+}
+#top-logo>.wrap .el{
+	flex-direction: column;
+	justify-content: center;
+}
+#top-logo>.wrap .logo-img img{
+	height: 40px;
+}
+#top-logo>.wrap .logo-text{
+	font-size: 24px;
+	font-weight: 700;
+	margin-left: 5px;
+}
+

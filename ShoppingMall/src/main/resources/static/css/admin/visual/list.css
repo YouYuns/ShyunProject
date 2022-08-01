@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+input:read-only{
+	border:none;
+}
+.visual-main p{
+	font-size: 20px;
+	text-align: center;
+	font-weight: bold;
+	margin:50px 0;
+}
+table{
+	width:1500px;
+	
+	border: 1px solid black;
+	border-collapse: collapse;
+	
+}
+table th,td{
+	padding:10px;
+	border: 1px solid black;
+		text-align: center;
+}
+table th{
+	background-color: black;
+	color:white;
+}
+table td{
+	height:100px;
+	line-height: 100px;
+}
+
